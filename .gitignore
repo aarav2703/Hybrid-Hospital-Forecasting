@@ -1,0 +1,19 @@
+# Ignore the raw data folder
+data/
+
+# Ignore the specific Monash TSF files in the root
+hospital_dataset.tsf
+tourism_monthly_dataset.tsf
+electricity_weekly_dataset.tsf
+
+# Ignore the artifacts and LLM inputs/outputs (highly recommended)
+artifacts_interpretability/
+LLM_input/
+LLM_outputs/
+Deepseek_results/
+
+# Standard Python ignores
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env
