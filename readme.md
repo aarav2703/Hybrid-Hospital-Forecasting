@@ -4,7 +4,7 @@
 
 ---
 
-## 📌 Project Overview
+##  Project Overview
 Hospital capacity planning is fundamentally a **scale-heterogeneity problem**. A "one-size-fits-all" machine learning model often fails because the signal-to-noise ratio varies drastically between a rural 50-bed clinic and a metropolitan 1000-bed trauma center.
 
 In this project, I built a hierarchical forecasting pipeline to predict monthly hospital patient volume. My core finding was a **"winner-take-most" dynamic**: while a Segmented LightGBM model achieved state-of-the-art accuracy for small and medium hospitals, it catastrophically failed on large institutions due to over-sensitivity to recent volatility.
@@ -15,7 +15,7 @@ In this project, I built a hierarchical forecasting pipeline to predict monthly 
 
 ---
 
-## 🔍 The Core Insight: Why Pure ML Failed
+##  The Core Insight: Why Pure ML Failed
 Early in my experiments, I observed that a global LightGBM model (trained on all series) was being "bullied" by high-volume outliers. Even after applying `log1p` transformations and segmenting the data into volume tertiles (Small, Medium, Large), the ML model struggled with the **Large** bucket.
 
 ### Failure Mode Analysis
@@ -29,7 +29,7 @@ Using SHAP (SHapley Additive exPlanations), I diagnosed the root cause:
 
 ---
 
-## ⚙️ Methodology & Architecture
+##  Methodology & Architecture
 
 ### 1. Data Integrity & Leakage Prevention
 I implemented a strict **Rolling-Origin Backtest** validation scheme.
@@ -53,7 +53,7 @@ To simulate a real-world production environment where stakeholders need narrativ
 
 ---
 
-## 🚀 Results
+##  Results
 The Hybrid approach yields a projected **30-40% improvement** over the pure ETS baseline by capitalizing on ML's strength in low-volatility regimes while mitigating its weakness in high-volatility ones.
 
 | Segment | Best Model | MAE | RMSE | Verdict |
@@ -64,7 +64,7 @@ The Hybrid approach yields a projected **30-40% improvement** over the pure ETS 
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 * **Core**: Python 3.10, Pandas, NumPy
 * **Modeling**: LightGBM (Gradient Boosting), Statsmodels (ETS)
 * **Interpretation**: SHAP (TreeExplainer with additivity override)
@@ -73,7 +73,7 @@ The Hybrid approach yields a projected **30-40% improvement** over the pure ETS 
 
 ---
 
-## 🔮 Limitations & Future Improvements
+##  Limitations & Future Improvements
 While the hybrid routing strategy is effective, there are several areas I plan to explore further:
 
 1.  **Hierarchical Reconciliation**: Currently, I forecast at the facility level. A "Bottom-Up" or "MinT" (Minimum Trace) reconciliation approach could enforce consistency between total system capacity and individual facility predictions.
@@ -82,7 +82,7 @@ While the hybrid routing strategy is effective, there are several areas I plan t
 
 ---
 
-## 💻 Usage
+##  Usage
 Cloning the repo (Data not included due to size):
 ```bash
 git clone [https://github.com/aarav2703/Hybrid-Hospital-Forecasting.git](https://github.com/aarav2703/Hybrid-Hospital-Forecasting.git)
